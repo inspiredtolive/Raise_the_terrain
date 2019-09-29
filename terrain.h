@@ -22,7 +22,7 @@ typedef struct SDL_Instance
 
 int init_instance(SDL_Instance *);
 int poll_events(void);
-SDL_Point **init_terrain();
+void init_terrain(SDL_Point ***terrain_points, FILE *terrain_file);
 void render_terrain(SDL_Instance instance, SDL_Point **terrain_points);
 int incline_x(float x, float y);
 int incline_y(float x, float y, float z);
