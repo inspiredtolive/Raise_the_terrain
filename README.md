@@ -14,7 +14,7 @@ Renders a terrain using isometric projection with a given set of 64 altitudes.
 * [Install SDL2](https://wiki.libsdl.org/Installation)
 
 ## Compilation
-`$ gcc -Wall -Werror -Wextra -pedantic *.c -o terrain`
+```$ gcc -Wall -Werror -Wextra -pedantic `sdl2-config --cflags --libs` *.c -o terrain```
 
 ## Usage
 `$ ./terrain <file_path>`
