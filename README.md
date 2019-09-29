@@ -1,5 +1,5 @@
 # Raise the terrain
-Renders a terrain using isometric projection given a set of altitudes.
+Renders a 7 by 7 terrain using isometric projection with a given set of altitudes.
 
 ## Prerequisites
 * Usage: terrain file
@@ -11,7 +11,7 @@ Renders a terrain using isometric projection given a set of altitudes.
 * Your program should end when the user is pressing the ESC key
 
 ## Requirements
-* [SDL2](https://wiki.libsdl.org/Installation)
+* [Install SDL2](https://wiki.libsdl.org/Installation)
 
 ## Compilation
 `$ gcc -Wall -Werror -Wextra -pedantic *.c -o terrain`
