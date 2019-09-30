@@ -1,15 +1,6 @@
 # Raise the terrain
 Renders a terrain using isometric projection with a given set of 64 altitudes.
 
-## Prerequisites
-* Usage: terrain file
-* Draw a grid using an isometric projection
-* The grid must be described in a file (see above example)
-* The color used to draw the grid doesn’t matter (same for the background)
-* The grid doesn’t need to be exactly the same as the one shown above. But make sure you have a coherent isometric projection.
-* Your grid must be centered and takes as much space as possible on the screen. We should be able to see the whole screen.
-* Your program should end when the user is pressing the ESC key
-
 ## Requirements
 * [Install SDL2](https://wiki.libsdl.org/Installation)
 
@@ -18,6 +9,13 @@ Renders a terrain using isometric projection with a given set of 64 altitudes.
 
 ## Usage
 `$ ./terrain <file_path>`
+
+## Controls
+| Keyboard Shortcuts	| Description |
+| --------------------- | ----------- |
+| Escape		| Exits the program |
+| Left Arrow		| Rotates the terrain clockwise |
+| Right Arrow		| Rotates the terrain counter-clockwise |
 
 ## Example
 ```
