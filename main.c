@@ -8,7 +8,7 @@
  */
 int main(int argc, const char *argv[])
 {
-	FILE *terrain_file;
+	float *altitudes, angle = 0;
 	SDL_Instance instance;
 
 	SDL_Point **terrain_points;
@@ -18,26 +18,19 @@ int main(int argc, const char *argv[])
 		fprintf(stderr, "Usage: ./terrain <file_path>\n");
 		return (1);
 	}
-	terrain_file = fopen(argv[1], "r");
-	if (terrain_file == NULL)
-	{
-		fprintf(stderr, "Unable to open file\n");
-		return (1);
-	}
-
 	if (init_instance(&instance) != 0)
 		return (1);
-
+	altitudes = get_altitudes(argv[1]);
 	/* creates an array of 2d points */
-	init_terrain(&terrain_points, terrain_file);
+	init_terrain(&terrain_points);
 	/* render loop */
-	while (terrain_points != NULL)
+	while (altitudes != NULL && terrain_points != NULL)
 	{
 		SDL_SetRenderDrawColor(instance.renderer, 0, 0, 0, 0);
 		SDL_RenderClear(instance.renderer);
-		if (poll_events() == 1)
+		if (poll_events(&angle) == 1)
 			break;
-		render_terrain(instance, terrain_points);
+		render_terrain(instance, terrain_points, altitudes, angle);
 		SDL_RenderPresent(instance.renderer);
 	}
 	/* free allocated memory */

@@ -3,21 +3,14 @@
 /**
  * init_terrain - creates an array of 2d points
  * @terrain_points: pointer to a buffer of points
- * @terrain_file: pointer to terrain file
  */
-void init_terrain(SDL_Point ***terrain_points, FILE *terrain_file)
+void init_terrain(SDL_Point ***terrain_points)
 {
 	int i = 0;
 	float x, y, z[64];
 	char *line, *token;
 	size_t n;
 
-	while (getline(&line, &n, terrain_file) != -1)
-	{
-		token = strtok(line, " \n");
-		for (; token && i < 64; i++, token = strtok(NULL, " \n"))
-			z[i] = atoi(token);
-	}
 	*terrain_points = malloc(sizeof(**terrain_points) * SIZE * SIZE);
 	if (*terrain_points == NULL)
 	{
@@ -36,8 +29,8 @@ void init_terrain(SDL_Point ***terrain_points, FILE *terrain_file)
 			*terrain_points = NULL;
 			return;
 		}
-		(*terrain_points)[i]->x = incline_x(x, y);
-		(*terrain_points)[i]->y = incline_y(x, y, z[i]);
+		(*terrain_points)[i]->x = x;
+		(*terrain_points)[i]->y = y;
 		if (x == SIZE - 1)
 		{
 			x = 0;

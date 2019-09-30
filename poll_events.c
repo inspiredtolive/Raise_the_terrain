@@ -4,7 +4,7 @@
  * poll_events - listens for keydown events
  * Return: Quit(1), Nothing(0)
  */
-int poll_events(void)
+int poll_events(float *angle)
 {
 	SDL_Event event;
 	SDL_KeyboardEvent key;
@@ -19,6 +19,10 @@ int poll_events(void)
 				key = event.key;
 				if (key.keysym.scancode == 0x29)
 					return (1);
+				else if (key.keysym.scancode == SDL_SCANCODE_LEFT)
+					*angle += 10;
+				else if (key.keysym.scancode == SDL_SCANCODE_RIGHT)
+					*angle -= 10;
 		}
 	}
 	return (0);
