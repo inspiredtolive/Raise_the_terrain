@@ -9,7 +9,7 @@
 #define SIZE 8
 #define LINE_LEN 120
 #define X_OFFSET 630
-#define Y_OFFSET 400
+#define Y_OFFSET 440
 #define INCLINE 0.7
 
 /**
