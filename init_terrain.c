@@ -3,21 +3,20 @@
 /**
  * init_terrain - creates an array of 2d points
  * @terrain_points: pointer to a buffer of points
+ * Return: Success(0), Error(1)
  */
-void init_terrain(SDL_Point ***terrain_points)
+int init_terrain(point_t ***terrain_points)
 {
 	int i = 0;
-	float x, y, z[64];
-	char *line, *token;
-	size_t n;
+	float x, y;
 
 	*terrain_points = malloc(sizeof(**terrain_points) * SIZE * SIZE);
 	if (*terrain_points == NULL)
 	{
 		fprintf(stderr, "Malloc failed!\n");
-		return;
+		return (1);
 	}
-	for (i = 0, x = 0, y = 0; i < SIZE * SIZE; i++)
+	for (i = 0, x = -3.5, y = -3.5; i < SIZE * SIZE; i++)
 	{
 		(*terrain_points)[i] = malloc(sizeof(SDL_Point));
 		if ((*terrain_points)[i] == NULL)
@@ -27,16 +26,17 @@ void init_terrain(SDL_Point ***terrain_points)
 				free((*terrain_points)[i]);
 			free(*terrain_points);
 			*terrain_points = NULL;
-			return;
+			return (1);
 		}
 		(*terrain_points)[i]->x = x;
 		(*terrain_points)[i]->y = y;
-		if (x == SIZE - 1)
+		if (x == SIZE - 4.5)
 		{
-			x = 0;
+			x = -3.5;
 			y++;
 		}
 		else
 			x++;
 	}
+	return (0);
 }

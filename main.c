@@ -8,10 +8,10 @@
  */
 int main(int argc, const char *argv[])
 {
-	float *altitudes, angle = 0;
+	int i, terrain_initalized = -1;
+	float angle = 0;
+	point_t **terrain_points;
 	SDL_Instance instance;
-
-	SDL_Point **terrain_points;
 
 	if (argc != 2)
 	{
@@ -20,20 +20,22 @@ int main(int argc, const char *argv[])
 	}
 	if (init_instance(&instance) != 0)
 		return (1);
-	altitudes = get_altitudes(argv[1]);
-	/* creates an array of 2d points */
-	init_terrain(&terrain_points);
+	/* creates an array of 3d points */
+	if (init_terrain(&terrain_points) == 0)
+		terrain_initalized = get_altitudes(argv[1], &terrain_points);
 	/* render loop */
-	while (altitudes != NULL && terrain_points != NULL)
+	while (terrain_initalized == 0)
 	{
 		SDL_SetRenderDrawColor(instance.renderer, 0, 0, 0, 0);
 		SDL_RenderClear(instance.renderer);
 		if (poll_events(&angle) == 1)
 			break;
-		render_terrain(instance, terrain_points, altitudes, angle);
+		render_terrain(instance, terrain_points, angle);
 		SDL_RenderPresent(instance.renderer);
 	}
 	/* free allocated memory */
+	for (i = 0; terrain_points &&  i < SIZE * SIZE; i++)
+		free(terrain_points[i]);
 	free(terrain_points);
 	SDL_DestroyRenderer(instance.renderer);
 	SDL_DestroyWindow(instance.window);

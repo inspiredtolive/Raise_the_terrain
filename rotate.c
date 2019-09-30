@@ -1,15 +1,27 @@
 #include "terrain.h"
 
-float rotate_x(float degrees, float x, float y)
+/**
+ * rotate_x - compute x-point rotation
+ * @point: 3d point
+ * @degrees: degrees to rotate the terrain
+ * Return: rotated x-point
+ */
+float rotate_x(point_t *point, float degrees)
 {
 	float radians = degrees * M_PI / 100;
 
-	return (x * cos(radians) - y * sin(radians));
+	return (point->x * cos(radians) - point->y * sin(radians));
 }
 
-float rotate_y(float degrees, float x, float y)
+/**
+ * rotate_y - compute y-point rotation
+ * @point: 3d point
+ * @degrees: degrees to rotate the terrain
+ * Return: rotated y-point
+ */
+float rotate_y(point_t *point, float degrees)
 {
 	float radians = degrees * M_PI / 100;
 
-	return (x * sin(radians) + y * cos(radians));
+	return (point->x * sin(radians) + point->y * cos(radians));
 }
