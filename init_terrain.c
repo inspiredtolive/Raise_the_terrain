@@ -30,7 +30,7 @@ int init_terrain(point_t ***terrain_points)
 		}
 		(*terrain_points)[i]->x = x;
 		(*terrain_points)[i]->y = y;
-        (*terrain_points)[i]->z = z;
+		(*terrain_points)[i]->z = 0;
 		if (x == SIZE - 4.5)
 		{
 			x = -3.5;

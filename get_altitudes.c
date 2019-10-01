@@ -10,7 +10,7 @@ int get_altitudes(const char *file_path, point_t ***terrain_points)
 {
 	int i = 0;
 	size_t n;
-	char *line = NULL, *token;
+	char *line = NULL, *token = NULL;
 	FILE *terrain_file;
 
 	terrain_file = fopen(file_path, "r");
@@ -25,5 +25,6 @@ int get_altitudes(const char *file_path, point_t ***terrain_points)
 		for (; token && i < SIZE * SIZE; i++, token = strtok(NULL, " \n"))
 			(*terrain_points)[i]->z = atoi(token);
 	}
+	free(token);
 	return (0);
 }
