@@ -9,7 +9,7 @@
 int get_altitudes(const char *file_path, point_t ***terrain_points)
 {
 	int i = 0;
-	size_t n;
+	size_t n = 0;
 	char *line = NULL, *token = NULL;
 	FILE *terrain_file;
 
