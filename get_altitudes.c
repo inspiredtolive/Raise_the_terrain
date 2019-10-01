@@ -24,7 +24,8 @@ int get_altitudes(const char *file_path, point_t ***terrain_points)
 		token = strtok(line, " \n");
 		for (; token && i < SIZE * SIZE; i++, token = strtok(NULL, " \n"))
 			(*terrain_points)[i]->z = atoi(token);
+		free(line);
+		line = NULL;
 	}
-	free(token);
 	return (0);
 }
